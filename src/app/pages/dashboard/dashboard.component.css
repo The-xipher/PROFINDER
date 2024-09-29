@@ -1,0 +1,49 @@
+.profile-section {
+    text-align: center;
+    padding: 20px;
+    img {
+      border-radius: 50%;
+      width: 100px;
+    }
+    h3 {
+      margin: 10px 0 5px;
+    }
+    p {
+      margin: 0;
+      color: gray;
+    }
+    nav {
+      margin-top: 20px;
+      a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .toggle-availability {
+    margin-bottom: 20px;
+  }
+  
+  .schedule-section {
+    margin-bottom: 20px;
+    mat-form-field {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .booking-details {
+    h4 {
+      margin-bottom: 10px;
+    }
+    mat-card {
+      margin-bottom: 10px;
+    }
+  }
+  

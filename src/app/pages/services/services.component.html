@@ -1,0 +1,47 @@
+<div class="container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Choose a service to get started...">
+        <button><i class="fa fa-search"></i></button>
+    </div>
+  
+    <div class="content">
+        <!-- Sidebar for Categories -->
+        <div class="sidebar">
+            <h4>Categories</h4>
+            <ul>
+                <li *ngFor="let category of categories">
+                    <a [href]="category.link">{{ category.name }}</a>
+                </li>
+            </ul>
+        </div>
+  
+        <!-- Main Content with Popular Services and Cleaning Services -->
+        <div class="main-content">
+            <!-- Popular Services Section -->
+            <h4 id="popular">Popular Services</h4>
+            <div class="card-grid">
+                <div class="card" *ngFor="let service of popularServices" (click)="viewServiceDetail(service)">
+                    <img [src]="service.image" alt="{{ service.title }}">
+                    <div class="card-body">
+                      <h5>{{ service.title }}</h5>
+                      <button class="btn-view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- Cleaning Services Section -->
+            <h4 id="cleaning">Cleaning Services</h4>
+            <div class="card-grid">
+                <div class="card" *ngFor="let service of cleaningServices" (click)="viewServiceDetail(service)">
+                    <img [src]="service.image" alt="{{ service.title }}">
+                    <div class="card-body">
+                      <h5>{{ service.title }}</h5>
+                      <button class="btn-view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,23 @@
+<!-- navbar.component.html -->
+<nav class="navbar">
+  <div class="navbar-left">
+    <a routerLink="/"> 
+      <img src="path/to/logo.png" alt="Logo" class="logo">
+    </a> 
+    <a routerLink="/services" class="all-services">All Services</a>
+  </div>
+  <div class="navbar-right">
+    <a routerLink="/BecomePro" class="nav-option">Become a Pro</a>
+    <a routerLink="/dashboard" class="nav-option">Professional Dashboard</a>
+    <a routerLink="/Help" class="nav-option">Help</a>
+    <a routerLink="/cart" class="nav-option">cart</a>
+    <a 
+      (click)="isAuthenticated() ? signOut() : navigateToAuth()" 
+      class="nav-option" 
+      id="LogIn"
+    >
+      {{ isAuthenticated() ? 'Sign Out' : 'Login/Signup' }}
+    </a>
+  </div>
+</nav>
+ <!-- This is where the routed components will be displayed -->

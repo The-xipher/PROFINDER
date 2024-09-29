@@ -1,0 +1,56 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+    <div class="profile-section">
+      <img src="assets/profile-pic.jpg" alt="Profile Picture" />
+      <h3>{{ name }}</h3> <!-- Dynamic Name -->
+      <p>{{ professionDetails }}</p> <!-- Dynamic Description -->
+      <!-- <nav>
+        <a mat-button routerLink="/dashboard">Dashboard</a>
+        <a mat-button routerLink="/schedule">Schedule</a>
+        <a mat-button routerLink="/bookings">Bookings</a>
+      </nav> -->
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="main-content">
+      <!-- Toggle availability -->
+      <div class="toggle-availability">
+        <mat-slide-toggle [(ngModel)]="isAvailable">Available</mat-slide-toggle>
+      </div>
+
+      <!-- Schedule -->
+      <div class="schedule-section">
+        <h4>Set your schedule</h4>
+        <mat-form-field>
+          <mat-label>Start Time</mat-label>
+          <input matInput [matDatepicker]="startPicker" placeholder="Select Start Time" [(ngModel)]="schedule.startTime">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>End Time</mat-label>
+          <input matInput [matDatepicker]="endPicker" placeholder="Select End Time" [(ngModel)]="schedule.endTime">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      
+        <button mat-button (click)="saveSchedule()">Save Schedule</button>
+      </div>
+      <!-- Booking details -->
+      <div class="booking-details">
+        <h4>Your Bookings</h4>
+        <mat-card *ngFor="let booking of bookings">
+          <mat-card-header>
+            <mat-card-title>{{ booking.place }}</mat-card-title>
+            <mat-card-subtitle>{{ booking.date }} | {{ booking.time }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Address: {{ booking.address }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

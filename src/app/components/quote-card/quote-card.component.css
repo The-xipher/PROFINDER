@@ -1,0 +1,60 @@
+/* Card container setup */
+
+  
+  /* Each card setup */
+  .card {
+    background-color: #f5f5f5;
+    padding: 20px; /* Space inside the card */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    box-sizing: border-box; /* Include padding and border in width */
+    width: 100%;
+  }
+  
+  /* Card hover effect */
+  .card:hover {
+    transform: translateY(-5px); /* Lift card effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  }
+  
+  /* Quote styling */
+  .quote {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  /* Profile styling */
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .profile-info {
+    text-align: left;
+  }
+  
+  .title {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .description {
+    color: #555;
+    font-size: 12px;
+  }
+  
+  /* Image styling */
+  img {
+    height: auto; /* Adjust height for images */
+    width: 100%; /* Full width for responsive images */
+  }
+  

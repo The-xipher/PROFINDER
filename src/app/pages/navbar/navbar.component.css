@@ -1,0 +1,72 @@
+body {
+  font-family: 'Roboto';
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically centered */
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for elevation */
+  border-radius: 4px; /* Optional: Rounded corners for a softer look */
+  font-family: 'Roboto';
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.logo {
+  height: 40px; /* Adjust the height as needed */
+  margin-right: 20px;
+}
+
+.all-services {
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  position: relative; /* Required for the shadow effect */
+  padding: 10px 20px; /* Padding to create space inside the "button" */
+  border-radius: .8rem; /* Optional: Rounded corners for a button-like appearance */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Button-like shadow */
+  transition: box-shadow 0.3s, background-color 0.3s;
+  background-color: rgb(247, 242, 242);
+}
+
+.all-services:hover {
+  background-color: #f0f0f0; /* Optional: Change background color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow on hover */
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  gap: 15px; /* Space between nav options */
+}
+
+.nav-option {
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+}
+
+#LogIn {
+  display: inline-block; /* Makes it behave like a button */
+  padding: 10px 20px; /* Adds padding for a button feel */
+  background-color: #007bff; /* Default background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline from links */
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer; /* Smooth transition for background and transform */
+}
+
+#LogIn:hover {
+  background-color: #0056b3; /* Darker background on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}

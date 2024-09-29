@@ -1,0 +1,86 @@
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>ProFinder</h1>
+      <p class="tagline">Find Professionals Near You</p>
+      <div class="hero-buttons">
+        <button class="btn btn-home-cleaning" (click)="navigateToService('Home Cleaning')">Home Cleaning</button>
+        <button class="btn btn-all-services" (click)="navigateToPage('services')">All Services</button>
+      </div>
+    </div>
+    <section class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search for services..." (input)="onSearch()" />
+      <button class="btn btn-search" (click)="searchService()">Search</button>
+      <!-- Display matching results as the user types -->
+      <div class="search-recommendations" *ngIf="filteredCategories.length">
+        <ul>
+          <li *ngFor="let Services of filteredCategories" (click)="navigateToService(Services.title)">
+            {{ Services.title }}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="category-section">
+  <div class="section-header">
+    <h2>Popular Categories</h2>
+    <button class="btn btn-see-more" (click)="navigateToPage('services')">See More</button>
+  </div>
+  <div class="category-grid">
+    <div class="category-card" *ngFor="let category of categories" (click)="navigateToService(category.name)">
+      <div class="icon-container">
+        <i class="fas" [ngClass]="category.icon"></i>
+      </div>
+      <h3>{{ category.name }}</h3>
+    </div>
+  </div>
+</section>
+
+<section class="become-pro-section">
+  <div class="become-pro-content">
+    <div class="become-pro-card">
+      <h3>Are you a top-tier expert?</h3>
+      <p>Join ProFinder and showcase your skills to clients looking for top professionals like you!</p>
+      <button class="btn btn-join-now"(click)="navigateToPage('BecomePro')">Become a Pro</button>
+    </div>
+  </div>
+</section>
+
+<section class="expertise-section">
+  <div class="section-header">
+    <h2>Our Expertise</h2>
+    <p class="subheader">Explore the professional services we offer, tailored for your needs</p>
+  </div>
+  <div class="expertise-grid">
+    <div class="expertise-card" (click)="navigateToService('Plumbing Service')">
+      <div class="icon-container">
+        <i class="fa fa-wrench"></i>
+      </div>
+      <h3>Plumbing Services</h3>
+      <p>Expert plumbing repairs and installations for your home or office.</p>
+    </div>
+    <div class="expertise-card" (click)="navigateToService('Electrical Service')">
+      <div class="icon-container">
+        <i class="fa fa-bolt"></i>
+      </div>
+      <h3>Electrical Work</h3>
+      <p>Certified electricians ready to assist with all your electrical needs.</p>
+    </div>
+    <div class="expertise-card" (click)="navigateToService('Home Renovation')">
+      <div class="icon-container">
+        <i class="fa fa-paint-brush"></i>
+      </div>
+      <h3>Home Renovation</h3>
+      <p>Transform your space with our home renovation experts.</p>
+    </div>
+    <div class="expertise-card" (click)="navigateToService('Landscaping')">
+      <div class="icon-container">
+        <i class="fa fa-tree"></i>
+      </div>
+      <h3>Landscaping</h3>
+      <p>Create the outdoor oasis of your dreams with our landscaping services.</p>
+    </div>
+  </div>
+</section>

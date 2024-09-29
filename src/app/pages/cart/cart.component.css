@@ -1,0 +1,129 @@
+/* General styling for the bookings cart */
+body{
+    min-height: 100vh;
+}
+
+.cart {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+  }
+  
+  .cart h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  li p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  li button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  li button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Styling for the review modal */
+  div[ngIf="booking.showReviewModal"] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+  }
+  
+  div[ngIf="booking.showReviewModal"] h3 {
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  form label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  form button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  form button[type="button"]:hover {
+    background-color: #c82333;
+  }
+  
+  /* Styling for no bookings */
+  p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    padding: 20px;
+  }
+  

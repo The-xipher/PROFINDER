@@ -1,0 +1,43 @@
+<div class="form-section">
+  <div class="form-container">
+    <h1>Start earning money this week!</h1>
+    <p>Gain access to hundreds of jobs in your city and build your own schedule.</p>
+    <div class="inner-form">
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form-row">
+          <input type="text" placeholder="Location" [(ngModel)]="user.location" name="location" required>
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="Zip Code" [(ngModel)]="user.zip" name="zip" required>
+        </div>
+        <div class="form-row">
+          <select [(ngModel)]="user.professionDetails" name="professionDetails" required>
+            <option value="">Select your primary service</option>
+            <option *ngFor="let option of professionOptions" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Get started</button>
+      </form>
+    </div>
+    <p class="status-link">
+      Already applied? <a href="#">Check your application status here.</a>
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="main-container">
+    <h1 class="header">What Our Providers Say</h1>
+    <h2 class="sub-header">Testimonials from Our Valued Service Providers</h2>
+
+    <div class="card-container">
+      <app-quote-card
+        *ngFor="let card of cards"
+        [quote]="card.quote"
+        [profilePic]="card.profilePic"
+        [name]="card.name"
+        [description]="card.description">
+      </app-quote-card>
+    </div>
+  </div>
+</section>
