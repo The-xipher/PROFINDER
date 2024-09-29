@@ -24,4 +24,8 @@ public class BookingService {
   public List<Booking> getBookingsByUserId(Long userId) {
     return bookingRepository.findByUserId(userId); // Ensure this method exists in the repository
   }
+
+  public List<Booking> getBookingsByProfessionalId(Long professionalId) {
+    return bookingRepository.findByServiceProviderId(professionalId);
+  }
 }

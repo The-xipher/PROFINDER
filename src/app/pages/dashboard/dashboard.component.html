@@ -43,8 +43,8 @@
         <h4>Your Bookings</h4>
         <mat-card *ngFor="let booking of bookings">
           <mat-card-header>
-            <mat-card-title>{{ booking.place }}</mat-card-title>
-            <mat-card-subtitle>{{ booking.date }} | {{ booking.time }}</mat-card-subtitle>
+            <mat-card-title>{{ booking.description }}</mat-card-title>
+            <mat-card-subtitle>{{ booking.date }} | {{ booking.bookingTime }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <p>Address: {{ booking.address }}</p>
