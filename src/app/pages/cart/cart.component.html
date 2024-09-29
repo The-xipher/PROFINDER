@@ -2,7 +2,7 @@
     <h2>Your Bookings</h2>
     <ul>
       <li *ngFor="let booking of bookings"> <!-- Changed userBookings to bookings -->
-        <p>Service: {{ booking.service.title }}</p> <!-- Adjust according to your booking structure -->
+        <p>Service: {{ booking.description }}</p> <!-- Adjust according to your booking structure -->
         <p>Booking Time: {{ booking.bookingTime }}</p>
         <p>Price: {{ booking.price }}</p>
         <button (click)="openReviewModal(booking)">Add Review</button>

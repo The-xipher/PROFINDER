@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
   bookings: any[] = []; // Store bookings
-  backendUrl: string = 'http://localhost:8080/api/reviews'; // Backend URL for reviews
+  backendUrl: string = 'http://localhost:8080/reviews'; // Backend URL for reviews
 
   constructor(
     private bookingService: BookingService,
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit {
     const reviewPayload = {
       user: { id: userId }, // Set the user ID
       professional: { id: 1 }, // Set this as needed or retrieve dynamically
-      service: { id: bookingId }, // Assuming booking ID corresponds to service ID
+      service: { id: 1 }, // Assuming booking ID corresponds to service ID
       rating,
       description
     };
