@@ -3,20 +3,19 @@ import { BookingService } from '../../services/booking.service';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NgModel } from '@angular/forms';
-import { NgIf } from '@angular/common';
-import { NgFor } from '@angular/common';
+import { NgIf, NgFor, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-cart',
   standalone: true,
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'], 
-  imports:[NgIf,NgFor,FormsModule]// Corrected to styleUrls instead of styleUrl
+  styleUrls: ['./cart.component.css'],
+  imports: [NgIf, NgFor, FormsModule, CommonModule]
 })
 export class CartComponent implements OnInit {
-  bookings: any[] = []; // Store bookings
-  backendUrl: string = 'http://localhost:8080/reviews'; // Backend URL for reviews
+  bookings: any[] = []; 
+  backendUrl: string = 'http://localhost:8080/reviews'; 
 
   constructor(
     private bookingService: BookingService,
@@ -26,47 +25,62 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Check if user is logged in
     if (this.authService.getToken() == null) {
       alert('Please log in to view your cart.');
-      console.log("Please log in."); 
-      this.router.navigate(['/auth']); // Navigate to authentication page
-      return; // Return if user is not logged in
+      this.router.navigate(['/auth']);
+      return;
     }
-    this.fetchBookings(); // Fetch user bookings
+    this.fetchBookings(); 
   }
 
   fetchBookings(): void {
     this.bookingService.getUserBookings().subscribe({
       next: (data: any[]) => {
-        this.bookings = data.map(booking => ({ // Initialize review object for each booking
+        this.bookings = data.map(booking => ({
           ...booking,
-          review: { rating: null, description: '' }, // Initialize review properties
-          showReviewModal: false // Control the visibility of the review modal
+          review: { rating: null, description: '' }, 
+          showReviewModal: false 
         }));
       },
       error: (error) => {
         console.error('Error fetching bookings:', error);
-        alert('There was an error fetching your bookings. Please try again.'); // Error handling
+        alert('There was an error fetching your bookings. Please try again.');
       }
     });
   }
 
-  // Method to submit a review
-  submitReview(bookingId: number, rating: number, description: string): void {
-    const userId = this.authService.getUserId(); // Get the user ID from AuthService
+  isReviewValid(booking: any): boolean {
+    return booking.review.rating && booking.review.description;
+  }
+
+  submitReview(booking: any): void {
+    if (!this.isReviewValid(booking)) {
+      alert('Please provide a rating and review description before submitting.');
+      return;
+    }
+
+    const userId = this.authService.getUserId(); 
+    const serviceId = booking.serviceId; // Directly get the service ID from booking
+    const professionalId = booking.serviceProviderId; // Use serviceProviderId as professionalId
+
+    // Validate IDs before submission
+    if (!serviceId) {
+      alert('Service ID is missing. Cannot submit review.');
+      return;
+    }
+    
     const reviewPayload = {
-      user: { id: userId }, // Set the user ID
-      professional: { id: 1 }, // Set this as needed or retrieve dynamically
-      service: { id: 1 }, // Assuming booking ID corresponds to service ID
-      rating,
-      description
+      user: { id: userId }, 
+      professional: { id: professionalId }, 
+      service: { id: serviceId }, 
+      rating: booking.review.rating, 
+      description: booking.review.description 
     };
 
     this.http.post(this.backendUrl, reviewPayload).subscribe({
       next: () => {
         alert('Review submitted successfully!');
-        this.fetchBookings(); // Refresh bookings to show the new review
+        this.fetchBookings(); 
       },
       error: (error) => {
         console.error('Error submitting review:', error);
@@ -75,13 +89,11 @@ export class CartComponent implements OnInit {
     });
   }
 
-  // Open review modal
   openReviewModal(booking: any): void {
-    booking.showReviewModal = true; // Show the review modal
+    booking.showReviewModal = true; 
   }
 
-  // Close review modal
   closeReviewModal(booking: any): void {
-    booking.showReviewModal = false; // Hide the review modal
+    booking.showReviewModal = false; 
   }
 }

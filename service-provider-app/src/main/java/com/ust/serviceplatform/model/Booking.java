@@ -30,4 +30,6 @@ public class Booking {
 
   private Long price;
 
+  private long serviceId;
+
 }

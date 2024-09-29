@@ -12,14 +12,15 @@ export class BookingService {
   private bookingDate: string = '';
   private bookingPrice: number = 0;
   private bookingDescription: string = '';
-
+  private serviceId:number=0
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   // Set booking details
-  setBookingDetails(date: string, price: number, description: string): void {
+  setBookingDetails(date: string, price: number, description: string,serviceId:number): void {
     this.bookingDate = date;
     this.bookingPrice = price;
     this.bookingDescription = description;
+    this.serviceId=serviceId;
     console.log('Booking details set:', this.getBookingDetails());
   }
 
@@ -29,6 +30,7 @@ export class BookingService {
       date: this.bookingDate,
       price: this.bookingPrice,
       description: this.bookingDescription,
+      serviceId:this.serviceId,
     };
     console.log('Booking details retrieved:', details);
     return details;
@@ -39,6 +41,7 @@ export class BookingService {
     this.bookingDate = '';
     this.bookingPrice = 0;
     this.bookingDescription = '';
+    this.serviceId=0
   }
 
   // Get user bookings

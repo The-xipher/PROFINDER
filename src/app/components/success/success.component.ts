@@ -40,17 +40,18 @@ export class SuccessComponent implements OnInit {
 
   registerBooking() {
     const userId = this.authService.getUserId(); // Ensure this returns the correct user ID
-    const serviceProviderId = 1; // Update this as necessary
-    const address = this.authService.getAddress(); // Ensure this retrieves the address
-    const { serviceDate, description, price } = this.bookingDetails; // Extract necessary info
+    const serviceProviderId = 1; // Update this as necessary, or dynamically fetch the service provider ID if needed
+    const address = this.authService.getAddress(); // Ensure this retrieves the user's address correctly
+    const { serviceDate, description, price, serviceId } = this.bookingDetails; // Extract necessary info from booking details
 
     const bookingPayload = {
-      userId: userId,
-      serviceProviderId: serviceProviderId,
-      bookingTime: serviceDate, // Use serviceDate from booking details
-      address: address,
-      description: description,
-      price: price // Include price if necessary
+      userId: userId,                      // User ID from AuthService
+      serviceProviderId: serviceProviderId, // Service provider (if dynamic, fetch accordingly)
+      bookingTime: serviceDate,             // Use the `serviceDate` from booking details
+      address: address,                     // User's address
+      description: description,             // Service description
+      price: price,                         // Service price
+      serviceId: serviceId                  // ID of the service being booked
     };
 
     // Log the payload for debugging purposes
@@ -62,7 +63,7 @@ export class SuccessComponent implements OnInit {
         console.log('Booking registered successfully:', response);
         alert("Booking registered successfully!");
         localStorage.removeItem('bookingDetails'); // Clear booking details from local storage after saving
-        this.router.navigate(['/cart']); // Navigate to a different route if needed
+        this.router.navigate(['/cart']); // Navigate to cart or any desired route
       },
       error: (error) => {
         console.error('Error registering booking:', error);

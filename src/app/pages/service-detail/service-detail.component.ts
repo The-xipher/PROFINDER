@@ -25,6 +25,7 @@ export class ServiceDetailComponent {
   // Combined service details including placeholder image, reviews, and description
   services = [
     {
+      id:1,
       title: 'Home Cleaning',
       description: 'Professional home cleaning services to make your home shine.',
       price: 12000,
@@ -32,10 +33,10 @@ export class ServiceDetailComponent {
       reviews: [
         { reviewer: 'John Doe', comment: 'Excellent service!', rating: 5 },
         { reviewer: 'Jane Smith', comment: 'Very satisfied!', rating: 4 },
-        { reviewer: 'Amarnath Kendre', comment: 'Good!', rating: 3 }
+        
       ]
     },
-    {
+    { id:2,
       title: 'Furniture Assembly',
       description: 'Get professional help to assemble your furniture quickly and efficiently.',
       price: 9000,
@@ -45,7 +46,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Alice', comment: 'Very professional.', rating: 4 }
       ]
     },
-    {
+    { id:3,
       title: 'Plumbing Service',
       description: 'Expert plumbing service to resolve any pipe or water-related issues.',
       price: 15000,
@@ -55,7 +56,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Monica', comment: 'Very reliable.', rating: 4 }
       ]
     },
-    {
+    { id:4,
       title: 'Electrical Service',
       description: 'Certified electricians available to handle all your electrical needs.',
       price: 13000,
@@ -65,7 +66,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Chandler', comment: 'Very knowledgeable.', rating: 4 }
       ]
     },
-    {
+    {  id:5,
       title: 'Smart Home Service',
       description: 'Upgrade your home with smart devices and automation solutions.',
       price: 20000,
@@ -75,7 +76,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Joey', comment: 'The tech was easy to use.', rating: 4 }
       ]
     },
-    {
+    { id:6,
       title: 'Moving Service',
       description: 'Let professionals help you move to your new home with ease.',
       price: 18000,
@@ -86,7 +87,7 @@ export class ServiceDetailComponent {
       ]
     },
     // New services added
-    {
+    { id:7,
       title: 'Home Repair',
       description: 'Get expert help for all your home repair needs.',
       price: 15000,
@@ -96,7 +97,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Tom', comment: 'Very reliable repair work.', rating: 4 }
       ]
     },
-    {
+    { id:8,
       title: 'Home Renovation',
       description: 'Transform your home with professional renovation services.',
       price: 30000,
@@ -106,7 +107,7 @@ export class ServiceDetailComponent {
         { reviewer: 'David', comment: 'Great attention to detail.', rating: 4 }
       ]
     },
-    {
+    { id:9,
       title: 'Tutoring',
       description: 'Expert tutoring services for various subjects and levels.',
       price: 6000,
@@ -116,7 +117,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Liam', comment: 'Improved my grades significantly.', rating: 4 }
       ]
     },
-    {
+    { id:10,
       title: 'Personal Care',
       description: 'Professional personal care services including grooming and wellness.',
       price: 8000,
@@ -126,7 +127,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Ethan', comment: 'Very satisfied with the service.', rating: 4 }
       ]
     },
-    {
+    { id:11,
       title: 'Landscaping',
       description: 'Create beautiful outdoor spaces with expert landscaping services.',
       price: 25000,
@@ -136,7 +137,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Mason', comment: 'Great job with the landscaping.', rating: 4 }
       ]
     },
-    {
+    { id:12,
       title: 'Painting',
       description: 'Paint Your Homes Beautiful.',
       price: 25000,
@@ -149,7 +150,7 @@ export class ServiceDetailComponent {
   ];
 
   cleaningServices = [
-    {
+    { id:1,
       title: 'Home Cleaning',
       description: 'Professional home cleaning services to make your home shine.',
       price: 12000,
@@ -159,7 +160,7 @@ export class ServiceDetailComponent {
         { reviewer: 'Jane Smith', comment: 'Very satisfied!', rating: 4 }
       ]
     },
-    {
+    { id:13,
       title: 'Office Cleaning',
       description: 'Office cleaning to ensure a hygienic work environment for your team.',
       price: 10000,
@@ -169,7 +170,7 @@ export class ServiceDetailComponent {
         { reviewer: 'HR Manager', comment: 'Highly recommend.', rating: 4 }
       ]
     },
-    {
+    { id:14,
       title: 'Rental Home Cleaning',
       description: 'Thorough cleaning of your rental property to prepare it for new tenants.',
       price: 14000,
@@ -180,10 +181,15 @@ export class ServiceDetailComponent {
       ]
     }
   ];
-
   backendUrl: string = 'http://localhost:3000/api';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private authService: AuthService, private bookingService: BookingService) {
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService,
+    private bookingService: BookingService
+  ) {
     // Extract the service title from the URL
     const serviceTitle = this.route.snapshot.paramMap.get('title');
     this.serviceDetail = this.services.concat(this.cleaningServices).find(service => service.title === serviceTitle);
@@ -221,10 +227,11 @@ export class ServiceDetailComponent {
       this.bookingService.setBookingDetails(
         this.serviceDate,
         this.serviceDetail.price,
-        this.serviceDetail.title
+        this.serviceDetail.title,
+        this.serviceDetail.id
       );
       console.log('Booking details after setting:', this.bookingService.getBookingDetails());
-       await this.createCheckoutSession();
+      await this.createCheckoutSession();
     }
   }
 
@@ -243,7 +250,8 @@ export class ServiceDetailComponent {
             localStorage.setItem('bookingDetails', JSON.stringify({
               serviceDate: this.serviceDate,
               price: this.serviceDetail.price,
-              description: this.serviceDetail.title
+              description: this.serviceDetail.title,
+              serviceId: this.serviceDetail.id
             }));
 
             // Initialize Stripe asynchronously
