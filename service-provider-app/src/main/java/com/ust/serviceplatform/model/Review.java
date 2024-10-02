@@ -19,7 +19,7 @@ public class Review {
   private Professional professional;
 
   @ManyToOne
-  @JoinColumn(name = "service_id", nullable = true)
+  @JoinColumn(name = "service_id", nullable = false)
   private Service service; // Add service relationship
 
   private Long rating;

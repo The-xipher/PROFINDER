@@ -48,4 +48,8 @@ public class ReviewController {
     reviewService.deleteReview(id);
     return ResponseEntity.noContent().build();
   }
+  @GetMapping("service/{serviceId}")
+  public ResponseEntity <List<ReviewDTO>> getReviewByServiceId(@PathVariable Long serviceId){
+    return ResponseEntity.ok(reviewService.findReviewByServiceId(serviceId));
+  }
 }

@@ -58,4 +58,10 @@ public class ReviewService {
       review.getDescription()
     );
   }
+
+    public List<ReviewDTO> findReviewByServiceId(Long id) {
+      return reviewRepository.findByServiceId(id).stream()
+        .map(this::convertToDTO)
+        .collect(Collectors.toList());
+    }
 }
