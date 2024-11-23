@@ -106,12 +106,13 @@ export class BecomeProComponent {
         },
         (error) => {
           console.error('Error occurred during application', error);
-          alert("Application Failed! Please try again after registration or  Loging in");
-          this.router.navigate(['/auth'])
+          alert("Application Failed! it either exists or try again after sometime later");
+          
         }
       );
     } else {
       alert("User ID not found. Please log in.");
+      this.router.navigate(['/auth'])
     }
   }
 }
